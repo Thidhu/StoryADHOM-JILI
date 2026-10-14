@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Click &amp; Read — འ་དོམ་དང་བྱི་ལི།</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Jomolhari&family=Noto+Serif+Tibetan:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/lucide@1/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ===== Header ===== -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon"><i data-lucide="book-open"></i></span>
+      <div>
+        <h1>Click &amp; Read</h1>
+        <p class="tagline">Tap any word to hear it</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <label class="control">
+        <span>Lesson</span>
+        <select id="lessonSelect"></select>
+      </label>
+
+      <label class="control">
+        <span>Speed</span>
+        <select id="speedSelect">
+          <option value="0.5">0.5x Slow</option>
+          <option value="0.75">0.75x</option>
+          <option value="1" selected>1x Normal</option>
+        </select>
+      </label>
+
+      <button id="playAllBtn" class="btn btn-primary" title="Read the whole lesson aloud">
+        <i data-lucide="play"></i> Read All
+      </button>
+
+      <button id="stopBtn" class="btn btn-secondary" title="Stop reading">
+        <i data-lucide="square"></i> Stop
+      </button>
+
+      <button id="teacherBtn" class="btn btn-ghost" title="Teacher mode: record your own sounds">
+        <i data-lucide="mic"></i> Teacher Mode
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Progress ===== -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Words practised: <strong id="practisedCount">0</strong></span>
+      <span id="lessonTitle"></span>
+    </div>
+    <div class="progress-track"><div id="progressBar" class="progress-fill"></div></div>
+  </div>
+
+  <!-- ===== Teacher Panel (hidden by default) ===== -->
+  <section id="teacherPanel" class="teacher-panel hidden">
+    <div class="panel-head">
+      <h2><i data-lucide="graduation-cap"></i> Teacher Studio</h2>
+      <p>Record sounds with your microphone — they are saved on this device and used automatically when students click the matching word. You can also add a new lesson below.</p>
+    </div>
+
+    <div class="teacher-grid">
+      <div class="teacher-card">
+        <h3>Record a sound</h3>
+        <p class="muted">Click any word in the story, then press Record.</p>
+        <p id="recWord" class="rec-word">No word selected yet.</p>
+        <div class="record-row">
+          <input id="recordKey" type="text" placeholder="word key, e.g. w01">
+          <button id="recordBtn" class="btn btn-primary"><i data-lucide="mic"></i> Record</button>
+          <button id="stopRecBtn" class="btn btn-secondary hidden"><i data-lucide="square"></i> Stop</button>
+          <button id="playRecBtn" class="btn btn-ghost"><i data-lucide="play"></i> Play</button>
+          <button id="delRecBtn" class="btn btn-danger"><i data-lucide="trash-2"></i> Delete</button>
+        </div>
+        <p id="recStatus" class="rec-status">Ready.</p>
+        <p class="muted small">Recordings are stored in this browser (IndexedDB). To move them to another computer, use Export / Import below.</p>
+      </div>
+
+      <div class="teacher-card">
+        <h3>Add a new lesson</h3>
+        <input id="newLessonTitle" type="text" placeholder="Lesson title (e.g. Unit 4 — Animals)">
+        <select id="newLessonLang">
+          <option value="dz">Dzongkha</option>
+          <option value="en">English</option>
+          <option value="hi">Hindi</option>
+        </select>
+        <textarea id="newLessonText" rows="4" placeholder="Paste your text here. Every word (separated by spaces) becomes clickable."></textarea>
+        <button id="addLessonBtn" class="btn btn-primary"><i data-lucide="plus-circle"></i> Add Lesson</button>
+      </div>
+
+      <div class="teacher-card full">
+        <h3>Backup &amp; share recordings</h3>
+        <div class="record-row">
+          <button id="exportBtn" class="btn btn-secondary"><i data-lucide="download"></i> Export recordings (.json)</button>
+          <label class="btn btn-ghost file-label">
+            <i data-lucide="upload"></i> Import recordings
+            <input id="importInput" type="file" accept=".json" hidden>
+          </label>
+          <button id="resetProgressBtn" class="btn btn-danger"><i data-lucide="rotate-ccw"></i> Reset progress</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Reading Area ===== -->
+  <main id="readingArea" class="reading-area"></main>
+
+  <footer class="footer">
+    <p>Tip: words with a <span class="dot dot-rec"></span> dot use your recorded voice; <span class="dot dot-file"></span> use an audio file. Words with no audio yet stay silent.</p>
+  </footer>
+</div>
+
+<!-- Hidden audio element for file playback -->
+<audio id="filePlayer" preload="none"></audio>
+
+<script src="lessons.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
