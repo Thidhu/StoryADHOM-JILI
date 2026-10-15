@@ -508,6 +508,28 @@
     }
   });
 
+  // ---------- Opening scene ----------
+  (function () {
+    var splash = $("splash");
+    if (!splash) return;
+    var timer = null, closed = false;
+    function toStep2() {
+      if (closed || splash.classList.contains("step2")) return;
+      clearTimeout(timer);
+      splash.classList.remove("step1"); splash.classList.add("step2");
+    }
+    function closeSplash() {
+      if (closed) return; closed = true; clearTimeout(timer);
+      splash.classList.add("leaving");
+      setTimeout(function () { splash.style.display = "none"; }, 650);
+    }
+    splash.classList.add("step1");
+    timer = setTimeout(toStep2, 2800);
+    $("splashBrand").addEventListener("click", toStep2);
+    $("startBtn").addEventListener("click", closeSplash);
+    $("skipSplash").addEventListener("click", closeSplash);
+  })();
+
   // ---------- Init ----------
   populateLessonSelect();
   var first = allLessons()[0];
