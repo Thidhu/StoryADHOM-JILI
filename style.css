@@ -1,3 +1,13 @@
+/* ---------- DDC Joyig (embedded so it shows on every device) ----------
+   Put the font file in the fonts/ folder:  fonts/DDC-Joyig.ttf
+   (optional, smaller & faster: fonts/DDC-Joyig.woff2)               */
+@font-face{
+  font-family:'DDC Joyig';
+  src:url('fonts/DDC-Joyig.woff2') format('woff2'),
+      url('fonts/DDC-Joyig.ttf') format('truetype'),
+      local('DDC Joyig'),local('DDC-Joyig'),local('DDC_Joyig');
+  font-weight:normal;font-style:normal;font-display:swap;
+}
 :root{
   --bg:#faf9f4; --card:#ffffff; --text:#0f172a; --muted:#64748b;
   --accent:#297a2e; --accent-soft:rgba(41,122,46,.14);
@@ -90,7 +100,7 @@ html,body{background:var(--bg);color:var(--text);font-family:'Fredoka',system-ui
 
 /* ---------- Dzongkha / Tibetan script ---------- */
 .reading-area.is-dz .lesson-line{
-  font-family:'Jomolhari','Noto Serif Tibetan','Noto Sans Tibetan','Microsoft Himalaya','Kailasa','Tibetan Machine Uni',serif;
+  font-family:'DDC Joyig','Jomolhari','Noto Serif Tibetan','Noto Sans Tibetan','Microsoft Himalaya','Kailasa','Tibetan Machine Uni',serif;
   font-size:2.3rem;line-height:3;font-weight:400;word-spacing:.3em;margin-bottom:1.6rem}
 .reading-area.is-dz .lesson-line.title-line{
   font-size:3rem;line-height:2.6;text-align:center;color:var(--accent);
@@ -103,7 +113,7 @@ html,body{background:var(--bg);color:var(--text);font-family:'Fredoka',system-ui
 .tok.noaudio{animation:nudge .45s}
 @keyframes nudge{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
 .rec-word{font-weight:600;color:var(--accent);margin-bottom:.6rem;font-size:1.05rem;
-  font-family:'Jomolhari','Noto Serif Tibetan','Microsoft Himalaya','Fredoka',serif}
+  font-family:'DDC Joyig','Jomolhari','Noto Serif Tibetan','Microsoft Himalaya','Fredoka',serif}
 .reading-area.is-dz .tok{line-height:1.9}
 
 /* ---------- Opening scene ---------- */
@@ -121,7 +131,7 @@ html,body{background:var(--bg);color:var(--text);font-family:'Fredoka',system-ui
 .brand-name{font-size:clamp(2.6rem,9vw,4.6rem);font-weight:700;letter-spacing:-.01em;line-height:1.1}
 .brand-name::after{content:"";display:block;width:64px;height:4px;border-radius:4px;margin:1rem auto 0;
   background:linear-gradient(90deg,#d97706,#fbbf24)}
-.dz-title{font-family:'Jomolhari','Noto Serif Tibetan','Noto Sans Tibetan','Microsoft Himalaya','Kailasa',serif;
+.dz-title{font-family:'DDC Joyig','Jomolhari','Noto Serif Tibetan','Noto Sans Tibetan','Microsoft Himalaya','Kailasa',serif;
   font-weight:400;font-size:clamp(3rem,13vw,6.5rem);line-height:1.7;color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.35)}
 .splash-sub{margin-top:.2rem;font-size:1.1rem;letter-spacing:.12em;color:#fbbf24;font-weight:500}
 .start-btn{margin-top:2.2rem;font-family:inherit;font-size:1.25rem;font-weight:600;color:#14451a;background:#fbbf24;
